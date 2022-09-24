@@ -3,6 +3,8 @@ const app = express();
 const path = require("path");
 const { createServer } = require("http");
 const socketio = require("socket.io");
+const Filter = require("bad-words");
+const filter = new Filter();
 
 //setup static file
 const pathPublic = path.join(__dirname, "../public");
@@ -11,24 +13,34 @@ app.use(express.static(pathPublic));
 //create server
 const httpServer = createServer(app);
 const io = socketio(httpServer);
-let count = 1;
-const messages = "hello world";
 
 //listen event sent from clients / lang nghe su kien ket noi tu client
 io.on("connection", (socket) => {
-  console.log("new client connection");
+  console.log("a new client connection");
+  //handle message connect
+  socket.emit(
+    "send a welcome message to the client from the server",
+    "welcome to our service"
+  );
+  socket.broadcast.emit(
+    "send a welcome message to the client from the server",
+    "There is a new client joining the chat group"
+  );
 
-  // listen on server the event sent from client
-  socket.on("click button to increase count", () => {
-    count++;
-    console.log("count is increased to: " + count);
-    //transfer count value from server to client
-    io.emit("send count value from server to client", count);
-  });
-
-  //transfer count value from server to client
-  //socket.emit("send messages to client", messages);
-
+  //chat
+  socket.on(
+    "send a message from the client to the server",
+    (messageText, callback) => {
+      //check inproper message
+      if (filter.isProfane(messageText)) {
+        return callback("The message contains profanities");
+      }
+      //send message back to all clients
+      io.emit("send message back to all clients", messageText);
+      //call acknowledgement function
+      callback();
+    }
+  );
   //disconnect server
   socket.on("disconnect", () => console.log("client disconnected"));
 });

@@ -7,26 +7,15 @@
     <title>Document</title>
   </head>
   <body>
-    <h1>ncdks</h1>
-    <p>count: <span id="count-value"> 1 </span></p>
-    <button id="btn-increment">+ 1</button>
-
+    <main>
+      <h1>Chat app</h1>
+      <form id="form-messages">
+        <input type="text" id="input-messages" />
+        <button type="submit">Send</button>
+      </form>
+    </main>
     <!-- Standalone build CDN socketio -->
     <script src="/socket.io/socket.io.js"></script>
-    <script>
-      const socket = io();
-      //listen event sent from server to client
-      socket.on("send count value from server to client", (count) => {
-        console.log(`receive count value: ${count}`);
-        document.getElementById("count-value").innerHTML = count;
-      });
-      socket.on("send messages to client", (messages) =>
-        console.log("messages: " + messages)
-      );
-      //send event from client to server
-      document.getElementById("btn-increment").addEventListener("click", () => {
-        socket.emit("click button to increase count");
-      });
-    </script>
+    <script src="./js/client-chat.js"></script>
   </body>
 </html>
