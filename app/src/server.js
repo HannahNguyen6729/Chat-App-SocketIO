@@ -3,6 +3,7 @@ const app = express();
 const path = require("path");
 const { createServer } = require("http");
 const socketio = require("socket.io");
+const { createMessage } = require("../utils/create_chat_message");
 const Filter = require("bad-words");
 const filter = new Filter();
 
@@ -22,6 +23,7 @@ io.on("connection", (socket) => {
     "send a welcome message to the client from the server",
     "welcome to our service"
   );
+  //socket.broadcast.emit(): sending message to all clients expect the new client
   socket.broadcast.emit(
     "send a welcome message to the client from the server",
     "There is a new client joining the chat group"
@@ -35,12 +37,20 @@ io.on("connection", (socket) => {
       if (filter.isProfane(messageText)) {
         return callback("The message contains profanities");
       }
+      const message = createMessage(messageText);
       //send message back to all clients
-      io.emit("send message back to all clients", messageText);
+      io.emit("send message back to all clients", message);
       //call acknowledgement function
       callback();
     }
   );
+  // sharing location
+  socket.on("send location from client to server", (location) => {
+    console.log("received location: ", location);
+    const { latitude, longitude } = location;
+    const linkLocation = `https://www.google.com/maps?q=${latitude},${longitude}`;
+    io.emit("share location from server to client", linkLocation);
+  });
   //disconnect server
   socket.on("disconnect", () => console.log("client disconnected"));
 });
