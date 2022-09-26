@@ -31,4 +31,7 @@ const removeUser = (id) => {
   userList = userList.filter((user) => user.id !== id);
   return userList;
 };
-module.exports = { getUserList, addUser, removeUser };
+const findUser = (id) => {
+  return userList.find((user) => user.id === id);
+};
+module.exports = { getUserList, addUser, removeUser, findUser };

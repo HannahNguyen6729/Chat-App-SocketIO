@@ -1,9 +1,9 @@
 const socket = io();
 
 //handle message connect
-socket.on("send a welcome message to the client from the server", (message) => {
-  console.log("welcome message: ", message);
-});
+// socket.on("send a welcome message to the client from the server", (message) => {
+//   console.log("welcome message: ", message);
+// });
 
 //chat
 document.getElementById("form-messages").addEventListener("submit", (e) => {
@@ -25,8 +25,28 @@ document.getElementById("form-messages").addEventListener("submit", (e) => {
     acknowledgement
   );
 });
-socket.on("send message back to all clients", (messageText) => {
-  console.log("receive message", messageText);
+
+//chat: receive messages from server
+socket.on("send message from the server to clients", (message) => {
+  console.log("receive message", message);
+  //show message on browser
+  let htmlMessage = document.getElementById("app__messages").innerHTML;
+  htmlMessage += `
+  <div class="message-item">
+ 			 <div class="message__row1">
+              <p class="message__name"> ${message.username} </p>
+              <p class="message__date"> ${message.createAt} </p>
+            </div>
+            <div class="message__row2">
+              <p class="message__content">
+                ${message.messageText}
+              </p>
+            </div>
+	</div>
+		`;
+  document.getElementById("app__messages").innerHTML = htmlMessage;
+  //clear input message
+  document.getElementById("input-messages").value = "";
 });
 
 //sharing location
@@ -41,8 +61,24 @@ document.getElementById("btn-share-location").addEventListener("click", (e) => {
     });
   }
 });
-socket.on("share location from server to client", (linkLocation) => {
-  console.log("linkLocation", linkLocation);
+socket.on("share location from server to client", (message) => {
+  console.log("linkLocation", message.messageText);
+  //show location on browser
+  let htmlMessage = document.getElementById("app__messages").innerHTML;
+  htmlMessage += `
+<div class="message-item">
+		   <div class="message__row1">
+		   <p class="message__name"> ${message.username} </p>
+		   <p class="message__date"> ${message.createAt} </p>
+		 </div>
+		 <div class="message__row2">
+		   <p class="message__content">
+			 <a href=${message.messageText} target='_blank'> My location </a>
+		   </p>
+		 </div>
+ </div>
+	 `;
+  document.getElementById("app__messages").innerHTML = htmlMessage;
 });
 
 //handle query string parameters
@@ -56,7 +92,15 @@ socket.emit("join in the room action from client to server", {
   username,
 });
 
+//show chat room on html file
+document.getElementById("app__title").innerHTML = room;
+
 //handle userList
 socket.on("send userList from server to client", (userList) => {
   console.log("userList", userList);
+  let htmlContent = "";
+  userList.map((user) => {
+    htmlContent += `<li class="app__item-user"> ${user.username} </li>`;
+  });
+  document.getElementById("app__list-user--content").innerHTML = htmlContent;
 });

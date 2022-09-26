@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>CyberChat</title>
+    <title>Chat App</title>
     <!-- Bootstrap CSS -->
     <link
       rel="stylesheet"
@@ -25,23 +25,19 @@
     <main class="row app">
       <section class="col-md-3 col-sm-4 app__left">
         <h1 class="text-center">
-          <span class="app__title">Chat Room</span>
+          <span class="app__title" id="app__title">Chat Room</span>
         </h1>
         <div class="app__title--line"></div>
         <div class="app__list-user">
-          <ul class="app__list-user--content">
-            <li class="app__item-user">Cras justo odio</li>
-            <li class="app__item-user">Dapibus ac facilisis in</li>
-            <li class="app__item-user">Morbi leo risus</li>
-            <li class="app__item-user">Porta ac consectetur ac</li>
-            <li class="app__item-user">Vestibulum at eros</li>
+          <ul class="app__list-user--content" id="app__list-user--content">
+            <!-- <li class="app__item-user">Cras justo odio</li> -->
           </ul>
         </div>
       </section>
 
       <section class="col-md-9 col-sm-8 app__right">
-        <div class="app__messages">
-          <div class="message-item">
+        <div class="app__messages" id="app__messages">
+          <!-- <div class="message-item">
             <div class="message__row1">
               <p class="message__name">Nguyễn Phong Hào</p>
               <p class="message__date">11/02/2021 - 12:56:01</p>
@@ -51,300 +47,10 @@
                 hôm nay tui được đi đá banh , mừng qua các bạn ơi
               </p>
             </div>
-          </div>
-          <div class="message-item">
-            <div class="message__row1">
-              <p class="message__name">Nguyễn Phong Hào</p>
-              <p class="message__date">11/02/2021 - 12:56:01</p>
-            </div>
-            <div class="message__row2">
-              <p class="message__content">
-                hôm nay tui được đi đá banh , mừng qua các bạn ơi
-              </p>
-            </div>
-          </div>
-          <div class="message-item">
-            <div class="message__row1">
-              <p class="message__name">Nguyễn Phong Hào</p>
-              <p class="message__date">11/02/2021 - 12:56:01</p>
-            </div>
-            <div class="message__row2">
-              <p class="message__content">
-                hôm nay tui được đi đá banh , mừng qua các bạn ơi
-              </p>
-            </div>
-          </div>
-          <div class="message-item">
-            <div class="message__row1">
-              <p class="message__name">Nguyễn Phong Hào</p>
-              <p class="message__date">11/02/2021 - 12:56:01</p>
-            </div>
-            <div class="message__row2">
-              <p class="message__content">
-                hôm nay tui được đi đá banh , mừng qua các bạn ơi
-              </p>
-            </div>
-          </div>
-          <div class="message-item">
-            <div class="message__row1">
-              <p class="message__name">Nguyễn Phong Hào</p>
-              <p class="message__date">11/02/2021 - 12:56:01</p>
-            </div>
-            <div class="message__row2">
-              <p class="message__content">
-                hôm nay tui được đi đá banh , mừng qua các bạn ơi
-              </p>
-            </div>
-          </div>
-          <div class="message-item">
-            <div class="message__row1">
-              <p class="message__name">Nguyễn Phong Hào</p>
-              <p class="message__date">11/02/2021 - 12:56:01</p>
-            </div>
-            <div class="message__row2">
-              <p class="message__content">
-                hôm nay tui được đi đá banh , mừng qua các bạn ơi
-              </p>
-            </div>
-          </div>
-          <div class="message-item">
-            <div class="message__row1">
-              <p class="message__name">Nguyễn Phong Hào</p>
-              <p class="message__date">11/02/2021 - 12:56:01</p>
-            </div>
-            <div class="message__row2">
-              <p class="message__content">
-                hôm nay tui được đi đá banh , mừng qua các bạn ơi
-              </p>
-            </div>
-          </div>
-          <div class="message-item">
-            <div class="message__row1">
-              <p class="message__name">Nguyễn Phong Hào</p>
-              <p class="message__date">11/02/2021 - 12:56:01</p>
-            </div>
-            <div class="message__row2">
-              <p class="message__content">
-                hôm nay tui được đi đá banh , mừng qua các bạn ơi
-              </p>
-            </div>
-          </div>
-          <div class="message-item">
-            <div class="message__row1">
-              <p class="message__name">Nguyễn Phong Hào</p>
-              <p class="message__date">11/02/2021 - 12:56:01</p>
-            </div>
-            <div class="message__row2">
-              <p class="message__content">
-                hôm nay tui được đi đá banh , mừng qua các bạn ơi
-              </p>
-            </div>
-          </div>
-          <div class="message-item">
-            <div class="message__row1">
-              <p class="message__name">Nguyễn Phong Hào</p>
-              <p class="message__date">11/02/2021 - 12:56:01</p>
-            </div>
-            <div class="message__row2">
-              <p class="message__content">
-                hôm nay tui được đi đá banh , mừng qua các bạn ơi
-              </p>
-            </div>
-          </div>
-          <div class="message-item">
-            <div class="message__row1">
-              <p class="message__name">Nguyễn Phong Hào</p>
-              <p class="message__date">11/02/2021 - 12:56:01</p>
-            </div>
-            <div class="message__row2">
-              <p class="message__content">
-                hôm nay tui được đi đá banh , mừng qua các bạn ơi
-              </p>
-            </div>
-          </div>
-          <div class="message-item">
-            <div class="message__row1">
-              <p class="message__name">Nguyễn Phong Hào</p>
-              <p class="message__date">11/02/2021 - 12:56:01</p>
-            </div>
-            <div class="message__row2">
-              <p class="message__content">
-                hôm nay tui được đi đá banh , mừng qua các bạn ơi
-              </p>
-            </div>
-          </div>
-          <div class="message-item">
-            <div class="message__row1">
-              <p class="message__name">Nguyễn Phong Hào</p>
-              <p class="message__date">11/02/2021 - 12:56:01</p>
-            </div>
-            <div class="message__row2">
-              <p class="message__content">
-                hôm nay tui được đi đá banh , mừng qua các bạn ơi
-              </p>
-            </div>
-          </div>
-          <div class="message-item">
-            <div class="message__row1">
-              <p class="message__name">Nguyễn Phong Hào</p>
-              <p class="message__date">11/02/2021 - 12:56:01</p>
-            </div>
-            <div class="message__row2">
-              <p class="message__content">
-                hôm nay tui được đi đá banh , mừng qua các bạn ơi
-              </p>
-            </div>
-          </div>
-          <div class="message-item">
-            <div class="message__row1">
-              <p class="message__name">Nguyễn Phong Hào</p>
-              <p class="message__date">11/02/2021 - 12:56:01</p>
-            </div>
-            <div class="message__row2">
-              <p class="message__content">
-                hôm nay tui được đi đá banh , mừng qua các bạn ơi
-              </p>
-            </div>
-          </div>
-          <div class="message-item">
-            <div class="message__row1">
-              <p class="message__name">Nguyễn Phong Hào</p>
-              <p class="message__date">11/02/2021 - 12:56:01</p>
-            </div>
-            <div class="message__row2">
-              <p class="message__content">
-                hôm nay tui được đi đá banh , mừng qua các bạn ơi
-              </p>
-            </div>
-          </div>
-          <div class="message-item">
-            <div class="message__row1">
-              <p class="message__name">Nguyễn Phong Hào</p>
-              <p class="message__date">11/02/2021 - 12:56:01</p>
-            </div>
-            <div class="message__row2">
-              <p class="message__content">
-                hôm nay tui được đi đá banh , mừng qua các bạn ơi
-              </p>
-            </div>
-          </div>
-          <div class="message-item">
-            <div class="message__row1">
-              <p class="message__name">Nguyễn Phong Hào</p>
-              <p class="message__date">11/02/2021 - 12:56:01</p>
-            </div>
-            <div class="message__row2">
-              <p class="message__content">
-                hôm nay tui được đi đá banh , mừng qua các bạn ơi
-              </p>
-            </div>
-          </div>
-          <div class="message-item">
-            <div class="message__row1">
-              <p class="message__name">Nguyễn Phong Hào</p>
-              <p class="message__date">11/02/2021 - 12:56:01</p>
-            </div>
-            <div class="message__row2">
-              <p class="message__content">
-                hôm nay tui được đi đá banh , mừng qua các bạn ơi
-              </p>
-            </div>
-          </div>
-          <div class="message-item">
-            <div class="message__row1">
-              <p class="message__name">Nguyễn Phong Hào</p>
-              <p class="message__date">11/02/2021 - 12:56:01</p>
-            </div>
-            <div class="message__row2">
-              <p class="message__content">
-                hôm nay tui được đi đá banh , mừng qua các bạn ơi
-              </p>
-            </div>
-          </div>
-          <div class="message-item">
-            <div class="message__row1">
-              <p class="message__name">Nguyễn Phong Hào</p>
-              <p class="message__date">11/02/2021 - 12:56:01</p>
-            </div>
-            <div class="message__row2">
-              <p class="message__content">
-                hôm nay tui được đi đá banh , mừng qua các bạn ơi
-              </p>
-            </div>
-          </div>
-          <div class="message-item">
-            <div class="message__row1">
-              <p class="message__name">Nguyễn Phong Hào</p>
-              <p class="message__date">11/02/2021 - 12:56:01</p>
-            </div>
-            <div class="message__row2">
-              <p class="message__content">
-                hôm nay tui được đi đá banh , mừng qua các bạn ơi
-              </p>
-            </div>
-          </div>
-          <div class="message-item">
-            <div class="message__row1">
-              <p class="message__name">Nguyễn Phong Hào</p>
-              <p class="message__date">11/02/2021 - 12:56:01</p>
-            </div>
-            <div class="message__row2">
-              <p class="message__content">
-                hôm nay tui được đi đá banh , mừng qua các bạn ơi
-              </p>
-            </div>
-          </div>
-          <div class="message-item">
-            <div class="message__row1">
-              <p class="message__name">Nguyễn Phong Hào</p>
-              <p class="message__date">11/02/2021 - 12:56:01</p>
-            </div>
-            <div class="message__row2">
-              <p class="message__content">
-                hôm nay tui được đi đá banh , mừng qua các bạn ơi
-              </p>
-            </div>
-          </div>
-          <div class="message-item">
-            <div class="message__row1">
-              <p class="message__name">Nguyễn Phong Hào</p>
-              <p class="message__date">11/02/2021 - 12:56:01</p>
-            </div>
-            <div class="message__row2">
-              <p class="message__content">
-                hôm nay tui được đi đá banh , mừng qua các bạn ơi
-              </p>
-            </div>
-          </div>
-          <div class="message-item">
-            <div class="message__row1">
-              <p class="message__name">Nguyễn Phong Hào</p>
-              <p class="message__date">11/02/2021 - 12:56:01</p>
-            </div>
-            <div class="message__row2">
-              <p class="message__content">
-                hôm nay tui được đi đá banh , mừng qua các bạn ơi
-              </p>
-            </div>
-          </div>
-          <div class="message-item">
-            <div class="message__row1">
-              <p class="message__name">Nguyễn Phong Hào</p>
-              <p class="message__date">11/02/2021 - 12:56:01</p>
-            </div>
-            <div class="message__row2">
-              <p class="message__content">
-                hôm nay tui được đi đá banh , mừng qua các bạn ơi
-              </p>
-            </div>
-          </div>
+          </div> -->
         </div>
         <div class="app__send-messages">
           <form id="form-messages" class="form-messages">
-            <!-- <input type="text" id="input-messages" />
-            <button type="submit">Gửi</button>
-            <button type="button" id="btn-share-location">Gửi Vị Trí</button> -->
-
             <div class="input-group h-100">
               <div class="input-messages__wrapper">
                 <input type="text" id="input-messages" class="input-messages" />

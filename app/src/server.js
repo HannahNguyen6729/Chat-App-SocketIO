@@ -5,7 +5,13 @@ const { createServer } = require("http");
 const socketio = require("socket.io");
 const { createMessage } = require("./utils/create_chat_message");
 const Filter = require("bad-words");
-const { getUserList, addUser, removeUser } = require("./utils/usersManagement");
+const {
+  getUserList,
+  addUser,
+  removeUser,
+  findUser,
+} = require("./utils/usersManagement");
+const { create } = require("domain");
 const filter = new Filter();
 
 //setup static file
@@ -27,27 +33,33 @@ io.on("connection", (socket) => {
       socket.join(room);
       //handle message connect: send message to the new client
       socket.emit(
-        "send a welcome message to the client from the server",
-        `welcome to our chat room ${room}`
+        "send message from the server to clients",
+        createMessage(`welcome to our chat room ${room}`, "Admin")
       );
       //socket.broadcast.emit(): sending message to all clients expect the new client
       socket.broadcast
         .to(room)
         .emit(
-          "send a welcome message to the client from the server",
-          `A client with name:  ${username} just joined in the chat room: ${room}`
+          "send message from the server to clients",
+          createMessage(
+            `A new client (${username}) just joined in our chat room: ${room}`,
+            "Admin"
+          )
         );
       //chat
       socket.on(
         "send a message from the client to the server",
         (messageText, callback) => {
-          //check inproper message
+          //check improper message
           if (filter.isProfane(messageText)) {
             return callback("The message contains profanities");
           }
-          const message = createMessage(messageText);
+          //finding user sending message
+          const userId = socket.id;
+          const user = findUser(userId);
+          const message = createMessage(messageText, user.username);
           //send message back to all clients
-          io.to(room).emit("send message back to all clients", message);
+          io.to(room).emit("send message from the server to clients", message);
           //call acknowledgement function
           callback();
         }
@@ -57,7 +69,11 @@ io.on("connection", (socket) => {
         console.log("received location: ", location);
         const { latitude, longitude } = location;
         const linkLocation = `https://www.google.com/maps?q=${latitude},${longitude}`;
-        io.to(room).emit("share location from server to client", linkLocation);
+        //finding user sending message
+        const userId = socket.id;
+        const user = findUser(userId);
+        const message = createMessage(linkLocation, user.username);
+        io.to(room).emit("share location from server to client", message);
       });
       //handle userList
       const newUser = {
