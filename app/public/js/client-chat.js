@@ -44,3 +44,19 @@ document.getElementById("btn-share-location").addEventListener("click", (e) => {
 socket.on("share location from server to client", (linkLocation) => {
   console.log("linkLocation", linkLocation);
 });
+
+//handle query string parameters
+const queryString = location.search;
+//console.log(queryString); //   ?room=js&username=anna
+const paramObj = Qs.parse(queryString, { ignoreQueryPrefix: true });
+//console.log("paramObj", paramObj);
+const { room, username } = paramObj;
+socket.emit("join in the room action from client to server", {
+  room,
+  username,
+});
+
+//handle userList
+socket.on("send userList from server to client", (userList) => {
+  console.log("userList", userList);
+});
