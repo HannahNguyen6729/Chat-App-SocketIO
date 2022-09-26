@@ -100,4 +100,6 @@ io.on("connection", (socket) => {
 });
 
 const PORT = 4567;
-httpServer.listen(PORT, () => console.log("listening on port " + PORT));
+httpServer.listen(process.env.PORT || PORT, () =>
+  console.log("listening on port " + PORT)
+);
